@@ -81,7 +81,6 @@ def create_pdf(results, output_filename="TSP_Algorithm_Results.pdf"):
     # Header row
     header = [
         "Benchmark",
-        "Cities",
         "Optimal\nDistance",
         "NN Distance",
         "NN Time (s)",
@@ -111,7 +110,6 @@ def create_pdf(results, output_filename="TSP_Algorithm_Results.pdf"):
     # Data rows
     for result in results:
         filename = result['filename'].replace('.txt', '').replace('.tsp', '')
-        num_cities = result['num_cities']
         
         # Get optimal distance
         optimal = optimal_distances.get(filename, 'N/A')
@@ -122,7 +120,7 @@ def create_pdf(results, output_filename="TSP_Algorithm_Results.pdf"):
                     optimal = optimal_distances[key]
                     break
         
-        row = [filename, str(num_cities), str(optimal)]
+        row = [filename, str(optimal)]
         
         # Nearest Neighbor
         nn = result['algorithms'].get('NearestNeighbor', {})
@@ -163,7 +161,7 @@ def create_pdf(results, output_filename="TSP_Algorithm_Results.pdf"):
         table_data.append(row)
     
     # Create table
-    table = Table(table_data, colWidths=[1.2*inch, 0.6*inch, 1*inch, 1*inch, 0.8*inch, 
+    table = Table(table_data, colWidths=[1.5*inch, 1*inch, 1*inch, 0.8*inch, 
                                          1*inch, 0.8*inch, 1*inch, 0.8*inch, 1*inch, 0.8*inch])
     
     # Style the table

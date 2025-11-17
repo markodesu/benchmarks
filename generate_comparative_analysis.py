@@ -286,12 +286,11 @@ def create_comparative_pdf(results, output_filename="TSP_Comparative_Analysis.pd
     
     comparison_data = []
     comparison_data.append([
-        'Benchmark', 'Cities', 'Optimal', 'NN Ratio', 'GA Ratio', 'BF Ratio', 'BB Ratio'
+        'Benchmark', 'Optimal', 'NN Ratio', 'GA Ratio', 'BF Ratio', 'BB Ratio'
     ])
     
     for result in results:
         filename = result['filename'].replace('.txt', '').replace('.tsp', '')
-        num_cities = result['num_cities']
         
         # Get optimal
         optimal = optimal_distances.get(filename, 'N/A')
@@ -301,7 +300,7 @@ def create_comparative_pdf(results, output_filename="TSP_Comparative_Analysis.pd
                     optimal = optimal_distances[key]
                     break
         
-        row = [filename, str(num_cities), str(optimal)]
+        row = [filename, str(optimal)]
         
         # Calculate ratios
         if optimal and isinstance(optimal, (int, float)) and optimal > 0:
@@ -317,7 +316,7 @@ def create_comparative_pdf(results, output_filename="TSP_Comparative_Analysis.pd
         
         comparison_data.append(row)
     
-    comparison_table = Table(comparison_data, colWidths=[1.2*inch, 0.6*inch, 1*inch, 0.9*inch, 
+    comparison_table = Table(comparison_data, colWidths=[1.5*inch, 1*inch, 0.9*inch, 
                                                           0.9*inch, 0.9*inch, 0.9*inch])
     comparison_table.setStyle(TableStyle([
         ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#FFC000')),
