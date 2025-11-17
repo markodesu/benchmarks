@@ -241,5 +241,5 @@ TSP Algorithm Benchmark Suite - Academic Project
 
 ---
 
-**Last Updated**: 2024
+**Last Updated**: 2025
 
